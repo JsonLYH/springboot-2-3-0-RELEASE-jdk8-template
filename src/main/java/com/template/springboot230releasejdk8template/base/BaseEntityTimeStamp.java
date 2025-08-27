@@ -14,12 +14,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @Author：weidaoru
- * @Date：2023/2/21 11:23
- */
 @Data
-public class BaseEntity implements Serializable {
+public class BaseEntityTimeStamp implements Serializable {
+
 
     private static final long serialVersionUID = -7959490808407820804L;
 
@@ -28,6 +25,7 @@ public class BaseEntity implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createTime;
+
 
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonInclude(value = JsonInclude.Include.NON_NULL)
@@ -41,10 +39,10 @@ public class BaseEntity implements Serializable {
     @JsonDeserialize(using = LocalDateTimeToLongDeserializer.class)
     private Long createTimestamp;
 
+
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonInclude(value = JsonInclude.Include.NON_NULL)
     @JsonSerialize(using = LongToDateTimeSerializer.class)
     @JsonDeserialize(using = LocalDateTimeToLongDeserializer.class)
     private Long updateTimestamp;
-
 }
